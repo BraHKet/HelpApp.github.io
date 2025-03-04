@@ -88,16 +88,17 @@
         .feature-card {
             transition: all 0.3s ease;
             border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            border: 1px solid #e5e7eb;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e5e7eb;
             padding: 2rem;
             height: 100%;
+            background: white;
         }
         
         .feature-card:hover {
             transform: translateY(-8px);
             border-color: var(--accent);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
         }
         
         .feature-icon {
@@ -119,7 +120,13 @@
             padding: 1.5rem;
             border-left: 4px solid var(--accent);
             margin: 1.5rem 0;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateX(4px);
         }
         
         .example-tag {
@@ -184,17 +191,18 @@
             background-color: white;
             border-radius: 1rem;
             padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             height: 100%;
             position: relative;
-            border-bottom: 4px solid transparent;
+            border: 2px solid #e5e7eb;
+            border-bottom: 4px solid var(--accent);
         }
         
         .step-card:hover {
             transform: translateY(-8px);
-            border-bottom-color: var(--accent);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-bottom-width: 6px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
         }
         
         .step-icon {
@@ -219,14 +227,16 @@
             background-color: white;
             border-radius: 1rem;
             padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             margin-bottom: 1.5rem;
+            border: 2px solid #e5e7eb;
+            border-left: 4px solid var(--accent);
         }
         
         .advantage-card:hover {
             transform: scale(1.03);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
         }
         
         .advantage-icon {
@@ -257,6 +267,7 @@
             border: 1px solid #d1d5db;
             background-color: #f9fafb;
             transition: all 0.3s ease;
+            color: #333333; /* Colore del testo dell'input */
         }
         
         .form-input:focus {
@@ -472,8 +483,8 @@
         </div>
     </section>
 
-    <!-- Esempi d'uso -->
-    <section class="py-20 px-6 bg-white">
+    <!-- Spiegazione dettagliata con esempi -->
+    <section class="py-20 px-6" style="background-color: #f5f5f5;">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-6">Cosa puoi fare con Help?</h2>
             <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">Help è la piattaforma che mette in contatto persone con problemi concreti ed esperti qualificati pronti ad aiutare. Ecco alcuni esempi di come Help può aiutarti:</p>
@@ -683,7 +694,7 @@
     </section>
     
     <!-- Come funziona -->
-    <section id="come-funziona" class="py-20 px-6 bg-white">
+    <section id="come-funziona" class="py-20 px-6" style="background-color: white;">
         <div class="container mx-auto">
             <h2 class="text-3xl font-bold text-center mb-6">Come funziona</h2>
             <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">Un processo semplice e trasparente per ricevere l'assistenza di cui hai bisogno, quando ne hai bisogno.</p>
@@ -846,7 +857,7 @@
                             
                             <div>
                                 <label for="expert-description" class="form-label">Descrivi la tua esperienza</label>
-                                <textarea id="expert-description" name="expert-description" rows="3" class="form-input" required></textarea>
+                                <textarea id="expert-description" name="expert-description" rows="3" class="form-input" style="color: #333333;" required></textarea>
                             </div>
                             
                             <div>
