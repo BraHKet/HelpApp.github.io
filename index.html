@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help - Assistenza al tuo servizio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Variabili colore */
+        :root {
+            --primary: #000000;
+            --secondary: #333333;
+            --accent: #FFD700;
+            --accent-hover: #FFC000;
+            --text-dark: #1f2937;
+            --text-light: #f9fafb;
+            --bg-light: #ffffff;
+            --bg-dark: #000000;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* Header e navigazione */
+        .header {
+            background-color: var(--bg-dark);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        
+        .logo {
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero section */
+        .hero {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        /* Esempio carte */
+        .feature-card {
+            transition: all 0.3s ease;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+            padding: 2rem;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .example-card {
+            background-color: #f9fafb;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+            margin: 1.5rem 0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        }
+        
+        .example-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .tag-open {
+            background-color: #d1fae5;
+            color: #047857;
+        }
+        
+        .tag-progress {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        
+        /* Tabella comparativa */
+        .comparison-table {
+            border-collapse: collapse;
+            width: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .comparison-table th {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            text-align: left;
+            padding: 1rem 1.5rem;
+            font-size: 1.125rem;
+        }
+        
+        .comparison-table th:last-child {
+            background-color: #fef9e7;
+            color: var(--text-dark);
+        }
+        
+        .comparison-table td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table .highlight {
+            background-color: #f9f9f9;
+        }
+        
+        .comparison-table .highlight td:last-child {
+            background-color: #fffbeb;
+        }
+        
+        /* Sezione "Come funziona" */
+        .step-card {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+            position: relative;
+            border-bottom: 4px solid transparent;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-8px);
+            border-bottom-color: var(--accent);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step-icon {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Vantaggi */
+        .advantage-card {
+            display: flex;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+        
+        .advantage-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .advantage-icon {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Form e input */
+        .form-container {
+            background-color: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            background-color: #f9fafb;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+        
+        .button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        
+        .button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        
+        .button-large {
+            padding: 1rem 2rem;
+            font-size: 1.125rem;
+            border-radius: 9999px;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-heading {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #4b5563;
+        }
+        
+        .footer-link {
+            color: #9ca3af;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-link:hover {
+            color: var(--accent);
+            transform: translateX(4px);
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #374151;
+            color: white;
+            transition: all 0.3s ease;
+            margin-right: 0.75rem;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent);
+            color: var(--bg-dark);
+            transform: translateY(-4px);
+        }
+        
+        /* Animazioni */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        /* Checkbox personalizzato */
+        .custom-checkbox {
+            position: relative;
+            padding-left: 35px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            user-select: none;
+            display: inline-block;
+        }
+        
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 4px;
+        }
+        
+        .custom-checkbox:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: var(--accent);
+        }
+        
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        
+        .custom-checkbox .checkmark:after {
+            left: 7px;
+            top: 3px;
+            width: 6px;
+            height: 11px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        
+        /* Loading spinner */
+        .loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--bg-dark);
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-hands-helping text-3xl mr-3 text-yellow-400"></i>
+                    <h1 class="text-2xl font-bold text-white logo">Help</h1>
+                </div>
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8">
+                        <li><a href="#come-funziona" class="nav-link text-white">Come funziona</a></li>
+                        <li><a href="#vantaggi" class="nav-link text-white">Vantaggi</a></li>
+                        <li><a href="#iscrizione" class="nav-link text-white">Iscriviti</a></li>
+                    </ul>
+                </nav>
+                <button class="md:hidden text-white text-xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 animate__animated animate__fadeInUp">Assistenza professionale a portata di click</h2>
+                    <p class="text-xl mb-8 animate__animated animate__fadeInUp animate__delay-1s opacity-90">Risolvi i tuoi problemi con l'aiuto di esperti qualificati. Paga solo quando ricevi l'assistenza di cui hai bisogno.</p>
+                    <a href="#iscrizione" class="button button-large animate__animated animate__fadeInUp animate__delay-2s">
+                        Iscriviti alla beta
+                        <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                <div class="md:w-1/2 animate__animated animate__fadeInRight animate__delay-1s animate-float">
+                    <img src="/api/placeholder/600/400" alt="Anteprima App Help" class="rounded-xl shadow-2xl w-full" style="max-width: 600px; margin: 0 auto;"/>
+                    <p class="text-center text-white text-sm mt-3 opacity-80">Anteprima dell'app Help</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Esempi d'uso -->
+    <section class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-6">Cosa puoi fare con Help?</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">Help è la piattaforma che mette in contatto persone con problemi concreti ed esperti qualificati pronti ad aiutare. Ecco alcuni esempi di come Help può aiutarti:</p>
+            
+            <div class="grid md:grid-cols-2 gap-10 mb-16">
+                <!-- Problemi tecnici -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-laptop text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Problemi tecnici</h3>
+                    <p class="text-gray-700 mb-6">Hai difficoltà ad accedere ad un sito web? Non riesci a configurare il tuo account email? Il tuo computer è lento e non sai perché?</p>
+                    
+                    <div class="example-card">
+                        <p class="italic text-gray-600 mb-4">"Non riesco ad accedere al mio account bancario online. La pagina continua a caricare ma non si apre mai."</p>
+                        <div class="flex justify-between">
+                            <span class="example-tag tag-open">Richiesta aperta</span>
+                            <span class="text-sm text-gray-500">14 esperti disponibili</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-5 rounded-lg mt-6">
+                        <p class="font-medium mb-3">Perché Help invece di:</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Risolvere da solo:</strong> Potresti perdere ore cercando soluzioni online, spesso con informazioni confuse o obsolete.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Chat GPT:</strong> Offre suggerimenti generici, ma non può vedere il tuo schermo o guidarti passo-passo in tempo reale.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Supporto allo studio -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Supporto allo studio</h3>
+                    <p class="text-gray-700 mb-6">Sei uno studente che ha bisogno di una spiegazione chiara su un argomento specifico? Non riesci a risolvere un problema di matematica?</p>
+                    
+                    <div class="example-card">
+                        <p class="italic text-gray-600 mb-4">"Non capisco come impostare un'integrale per risolvere questo problema di fisica. Ho bisogno di una guida passo-passo."</p>
+                        <div class="flex justify-between">
+                            <span class="example-tag tag-progress">In corso</span>
+                            <span class="text-sm text-gray-500">Esperto: Prof. Rossi</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-5 rounded-lg mt-6">
+                        <p class="font-medium mb-3">Perché Help invece di:</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Tutorial online:</strong> Sono generalizzati e non si adattano al tuo problema specifico.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Chat GPT:</strong> Può fornire formule, ma non può vedere i tuoi calcoli o correggere i tuoi errori in tempo reale.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Assistenza dispositivi -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Assistenza dispositivi</h3>
+                    <p class="text-gray-700 mb-6">Il tuo smartphone ha problemi? Non riesci a sincronizzare i tuoi dispositivi? Hai bisogno di configurare un nuovo gadget?</p>
+                    
+                    <div class="example-card">
+                        <p class="italic text-gray-600 mb-4">"Non riesco a collegare il mio smartwatch al telefono. Ho provato a seguire la guida ma continuo a ricevere un errore di connessione."</p>
+                        <div class="flex justify-between">
+                            <span class="example-tag tag-open">Richiesta aperta</span>
+                            <span class="text-sm text-gray-500">8 esperti disponibili</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-5 rounded-lg mt-6">
+                        <p class="font-medium mb-3">Perché Help invece di:</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Centro assistenza:</strong> Lunghi tempi di attesa e spesso richiedono spedizione del dispositivo o visita in negozio.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Chat GPT:</strong> Fornisce solo suggerimenti generici, non può vedere il tuo dispositivo o adattarsi al tuo modello specifico.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Aiuto con documenti -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Aiuto con documenti</h3>
+                    <p class="text-gray-700 mb-6">Hai bisogno di assistenza per compilare un documento? Non capisci come procedere con una pratica burocratica? Vuoi un controllo su un testo?</p>
+                    
+                    <div class="example-card">
+                        <p class="italic text-gray-600 mb-4">"Devo compilare questo modulo per la dichiarazione dei redditi ma non capisco bene come inserire i dati nella sezione 3."</p>
+                        <div class="flex justify-between">
+                            <span class="example-tag tag-progress">In corso</span>
+                            <span class="text-sm text-gray-500">Esperto: Dott. Bianchi</span>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-100 p-5 rounded-lg mt-6">
+                        <p class="font-medium mb-3">Perché Help invece di:</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Commercialista:</strong> Costi elevati anche per semplici chiarimenti o documenti di base.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-times text-red-500 mt-1 mr-3"></i>
+                                <span><strong>Chat GPT:</strong> Non conosce gli aggiornamenti più recenti alle normative o ai moduli specifici in uso oggi.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <p class="font-medium text-gray-800 mb-8 text-xl">E molte altre situazioni in cui potresti aver bisogno di assistenza immediata da parte di un esperto!</p>
+                <div class="inline-block bg-yellow-50 text-gray-800 px-8 py-4 rounded-full font-bold border border-yellow-400 shadow-md">
+                    <i class="fas fa-info-circle mr-2 text-yellow-500"></i> Qualunque sia il tuo problema, c'è un esperto pronto ad aiutarti su Help
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confronto con ChatGPT -->
+    <section class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-6">Perché Help è meglio di ChatGPT</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">ChatGPT è uno strumento straordinario, ma per molti problemi reali serve un contatto umano. Ecco perché Help è la soluzione migliore:</p>
+            
+            <div class="overflow-x-auto">
+                <table class="comparison-table w-full max-w-5xl mx-auto">
+                    <thead>
+                        <tr>
+                            <th>Caratteristica</th>
+                            <th>ChatGPT</th>
+                            <th>Help</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="highlight">
+                            <td class="font-medium">Assistenza interattiva in tempo reale</td>
+                            <td><i class="fas fa-times text-red-500 mr-2"></i> No, risponde solo a domande statiche</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Sì, chat live con esperti reali</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Può vedere il tuo problema</td>
+                            <td><i class="fas fa-times text-red-500 mr-2"></i> No, può solo leggere descrizioni</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Sì, puoi condividere schermate</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td class="font-medium">Guida interattiva passo-passo</td>
+                            <td><i class="fas fa-minus text-amber-500 mr-2"></i> Limitata, non si adatta in tempo reale</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Sì, l'esperto ti guida ad ogni passaggio</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Conoscenza di software/dispositivi specifici</td>
+                            <td><i class="fas fa-minus text-amber-500 mr-2"></i> Conoscenza generica, non specifica</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Esperti dedicati per ogni tecnologia</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td class="font-medium">Aggioramenti su normative recenti</td>
+                            <td><i class="fas fa-times text-red-500 mr-2"></i> Conoscenza limitata fino al 2023</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Esperti aggiornati in tempo reale</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Responsabilità delle soluzioni</td>
+                            <td><i class="fas fa-times text-red-500 mr-2"></i> Nessuna responsabilità per errori</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Esperti che rispondono del proprio operato</td>
+                        </tr>
+                        <tr class="highlight">
+                            <td class="font-medium">Adattamento ai tuoi problemi specifici</td>
+                            <td><i class="fas fa-minus text-amber-500 mr-2"></i> Limitato, genera risposte generiche</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Soluzioni personalizzate per te</td>
+                        </tr>
+                        <tr>
+                            <td class="font-medium">Possibilità di porre domande di follow-up</td>
+                            <td><i class="fas fa-minus text-amber-500 mr-2"></i> Sì, ma in conversazioni separate</td>
+                            <td><i class="fas fa-check text-green-600 mr-2"></i> Dialogo continuo fino alla soluzione</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#iscrizione" class="button button-large">
+                    Prova Help ora
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Come funziona -->
+    <section id="come-funziona" class="py-20 px-6 bg-white">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-6">Come funziona</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">Un processo semplice e trasparente per ricevere l'assistenza di cui hai bisogno, quando ne hai bisogno.</p>
+            
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="step-card">
+                    <div class="step-icon">1</div>
+                    <h3 class="text-2xl font-bold mb-4">Registrati</h3>
+                    <p class="text-gray-600">Crea il tuo profilo come utente o come esperto. Personalizza il tuo profilo con descrizione, foto e certificazioni professionali.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-icon">2</div>
+                    <h3 class="text-2xl font-bold mb-4">Pubblica la richiesta</h3>
+                    <p class="text-gray-600">Descrivi il problema che stai riscontrando. Le richieste aperte saranno visibili in verde, quelle assegnate in giallo.</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-icon">3</div>
+                    <h3 class="text-2xl font-bold mb-4">Chatta con l'esperto</h3>
+                    <p class="text-gray-600">Una volta accettata la richiesta di un esperto, potrai chattare direttamente per risolvere il problema in modo efficace.</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <div class="inline-block py-4 px-8 bg-yellow-50 rounded-full text-gray-800 font-bold shadow-md border border-yellow-400">
+                    <i class="fas fa-coins mr-2 text-yellow-500"></i> Solo 50 centesimi ogni 10 messaggi - Paghi solo l'aiuto che ricevi!
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vantaggi -->
+    <section id="vantaggi" class="py-20 px-6 bg-gray-50">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-6">I vantaggi di Help</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-16">Perché scegliere la nostra piattaforma per risolvere i tuoi problemi quotidiani.</p>
+            
+            <div class="grid md:grid-cols-2 gap-x-10 gap-y-8">
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3">Esperti verificati</h3>
+                        <p class="text-gray-600">Tutti gli esperti sono verificati e mostrano le loro qualifiche e certificazioni professionali, garantendo un'assistenza di alta qualità.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3">Pagamento trasparente</h3>
+                        <p class="text-gray-600">Paghi solo 50 centesimi ogni 10 messaggi scambiati, senza costi nascosti, abbonamenti o impegni a lungo termine.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3">Assistenza personalizzata</h3>
+                        <p class="text-gray-600">Ricevi assistenza specifica per il tuo problema, quando ne hai bisogno, da professionisti qualificati nel settore richiesto.</p>
+                    </div>
+                </div>
+                
+                <div class="advantage-card">
+                    <div class="advantage-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold mb-3">Sistema di recensioni</h3>
+                        <p class="text-gray-600">Valuta l'assistenza ricevuta e aiuta gli altri utenti a scegliere il miglior esperto in base alle esperienze reali degli utenti.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Iscrizione -->
+    <section id="iscrizione" class="py-20 px-6 bg-black text-white">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Iscrizione utenti -->
+                <div>
+                    <div class="form-container">
+                        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Iscriviti alla newsletter</h2>
+                        <p class="text-center text-gray-600 mb-8">Resta aggiornato sullo sviluppo dell'app e sii tra i primi a poterla provare in anteprima!</p>
+                        
+                        <form id="newsletter-form" class="space-y-6">
+                            <div>
+                                <label for="name" class="form-label">Nome</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                            
+                            <div>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" required>
+                                    <span class="checkmark"></span>
+                                    <span class="ml-2">Accetto la privacy policy e i termini di servizio</span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" id="submit-btn" class="button w-full flex justify-center items-center">
+                                <span>Iscriviti ora</span>
+                                <div class="loader"></div>
+                            </button>
+                        </form>
+                        
+                        <div id="confirmation" class="hidden mt-6 p-5 bg-green-100 text-green-700 rounded-lg text-center">
+                            <i class="fas fa-check-circle text-2xl mb-2"></i>
+                            <p class="font-medium">Grazie per l'iscrizione!</p>
+                            <p>Controlla la tua email per confermare l'iscrizione!</p>
+                        </div>
+                        
+                        <div id="error" class="hidden mt-6 p-5 bg-red-100 text-red-700 rounded-lg text-center">
+                            <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                            <p class="font-medium">Si è verificato un errore!</p>
+                            <p>Riprova più tardi o contattaci se il problema persiste.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Diventa esperto -->
+                <div id="diventa-esperto">
+                    <div class="form-container">
+                        <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Diventa un esperto</h2>
+                        <p class="text-center text-gray-600 mb-8">Metti a disposizione le tue competenze e guadagna aiutando le persone che hanno bisogno della tua esperienza.</p>
+                        
+                        <form id="expert-form" class="space-y-6">
+                            <div>
+                                <label for="expert-name" class="form-label">Nome completo</label>
+                                <input type="text" id="expert-name" name="expert-name" class="form-input" required>
+                            </div>
+                            
+                            <div>
+                                <label for="expert-email" class="form-label">Email</label>
+                                <input type="email" id="expert-email" name="expert-email" class="form-input" required>
+                            </div>
+                            
+                            <div>
+                                <label for="expert-skills" class="form-label">Le tue competenze</label>
+                                <select id="expert-skills" name="expert-skills" class="form-input" required>
+                                    <option value="">Seleziona la tua area principale</option>
+                                    <option value="tech">Supporto tecnico e informatico</option>
+                                    <option value="study">Supporto allo studio</option>
+                                    <option value="mobile">Assistenza dispositivi mobili</option>
+                                    <option value="document">Assistenza documenti e burocrazia</option>
+                                    <option value="other">Altro (specificare)</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="expert-description" class="form-label">Descrivi la tua esperienza</label>
+                                <textarea id="expert-description" name="expert-description" rows="3" class="form-input" required></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" required>
+                                    <span class="checkmark"></span>
+                                    <span class="ml-2">Accetto la privacy policy e i termini di servizio</span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" id="expert-submit-btn" class="button w-full flex justify-center items-center">
+                                <span>Invia candidatura</span>
+                                <div class="expert-loader loader"></div>
+                            </button>
+                        </form>
+                        
+                        <div id="expert-confirmation" class="hidden mt-6 p-5 bg-green-100 text-green-700 rounded-lg text-center">
+                            <i class="fas fa-check-circle text-2xl mb-2"></i>
+                            <p class="font-medium">Grazie per la tua candidatura!</p>
+                            <p>Ti contatteremo presto per i prossimi passi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div>
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-hands-helping text-2xl mr-3 text-yellow-400"></i>
+                        <h3 class="text-2xl font-bold logo">Help</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">La piattaforma che connette chi ha bisogno di aiuto con esperti qualificati, in modo semplice ed economico.</p>
+                    <div class="bg-gray-900 rounded-lg p-4 text-sm text-gray-400">
+                        <p>&copy; 2025 Help. Tutti i diritti riservati.</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Diventa un esperto</h4>
+                    <p class="text-gray-400 mb-6">Hai competenze da mettere a disposizione? Unisciti al nostro team di esperti e inizia a guadagnare aiutando gli altri.</p>
+                    <a href="#diventa-esperto" class="button w-full mb-6">
+                        Candidati come esperto
+                    </a>
+                    <ul class="space-y-3">
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            Orari flessibili
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            Pagamenti rapidi
+                        </li>
+                        <li class="flex items-center text-gray-400">
+                            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+                            Scegli tu quali richieste accettare
+                        </li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="footer-heading">Seguici</h4>
+                    <div class="flex mb-8">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="bg-gray-900 rounded-lg p-4 text-center">
+                        <p class="text-white font-medium mb-4">Scarica l'app</p>
+                        <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
+                            <a href="#" class="bg-black rounded-lg px-4 py-3 flex items-center justify-center border border-gray-800 hover:border-gray-600 transition">
+                                <i class="fab fa-apple text-white text-xl mr-3"></i>
+                                <div class="text-left">
+                                    <p class="text-xs text-gray-400">Scarica su</p>
+                                    <p class="text-sm font-bold text-white">App Store</p>
+                                </div>
+                            </a>
+                            <a href="#" class="bg-black rounded-lg px-4 py-3 flex items-center justify-center border border-gray-800 hover:border-gray-600 transition">
+                                <i class="fab fa-google-play text-white text-xl mr-3"></i>
+                                <div class="text-left">
+                                    <p class="text-xs text-gray-400">Scarica su</p>
+                                    <p class="text-sm font-bold text-white">Google Play</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Newsletter form handling
+            const form = document.getElementById('newsletter-form');
+            const confirmationMessage = document.getElementById('confirmation');
+            const errorMessage = document.getElementById('error');
+            const submitButton = document.getElementById('submit-btn');
+            const submitText = submitButton.querySelector('span');
+            const loader = document.querySelector('.loader');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                submitText.textContent = 'Invio in corso...';
+                loader.style.display = 'block';
+                submitButton.disabled = true;
+                
+                // Get form data
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                
+                // Simulate email validation and API request
+                setTimeout(function() {
+                    // Email validation simulation
+                    if (validateEmail(email)) {
+                        // Successful submission
+                        form.reset();
+                        form.style.display = 'none';
+                        confirmationMessage.classList.remove('hidden');
+                        
+                        // Simulate sending verification email
+                        console.log('Email di verifica inviata a:', email);
+                        
+                        // In a real scenario, you would send this data to your server
+                        // which would handle the email verification process
+                    } else {
+                        // Error with the email format
+                        errorMessage.innerHTML = `
+                            <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                            <p class="font-medium">Formato email non valido!</p>
+                            <p>Inserisci un indirizzo email valido.</p>
+                        `;
+                        errorMessage.classList.remove('hidden');
+                        
+                        setTimeout(() => {
+                            errorMessage.classList.add('hidden');
+                        }, 5000);
+                    }
+                    
+                    // Reset button state
+                    submitText.textContent = 'Iscriviti ora';
+                    loader.style.display = 'none';
+                    submitButton.disabled = false;
+                }, 1500);
+            });
+            
+            // Expert form handling
+            const expertForm = document.getElementById('expert-form');
+            const expertConfirmation = document.getElementById('expert-confirmation');
+            const expertSubmitButton = document.getElementById('expert-submit-btn');
+            const expertSubmitText = expertSubmitButton.querySelector('span');
+            const expertLoader = document.querySelector('.expert-loader');
+            
+            if (expertForm) {
+                expertForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Show loading state
+                    expertSubmitText.textContent = 'Invio in corso...';
+                    if (expertLoader) expertLoader.style.display = 'block';
+                    expertSubmitButton.disabled = true;
+                    
+                    // Get form data
+                    const name = document.getElementById('expert-name').value;
+                    const email = document.getElementById('expert-email').value;
+                    const skills = document.getElementById('expert-skills').value;
+                    const description = document.getElementById('expert-description').value;
+                    
+                    // Simulate API request
+                    setTimeout(function() {
+                        // Successful submission
+                        expertForm.reset();
+                        expertForm.style.display = 'none';
+                        expertConfirmation.classList.remove('hidden');
+                        
+                        // Log expert application data
+                        console.log('Candidatura esperto inviata:', {
+                            name,
+                            email,
+                            skills,
+                            description
+                        });
+                        
+                        // Reset button state
+                        expertSubmitText.textContent = 'Invia candidatura';
+                        if (expertLoader) expertLoader.style.display = 'none';
+                        expertSubmitButton.disabled = false;
+                    }, 1500);
+                });
+            }
+            
+            // Email validation function
+            function validateEmail(email) {
+                const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(String(email).toLowerCase());
+            }
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80, // Account for fixed header
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Animation on scroll
+            const animateOnScroll = function() {
+                const elements = document.querySelectorAll('.feature-card, .advantage-card, .step-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            };
+            
+            // Initial check on load
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+        });
+    </script>
+</body>
+</html>
