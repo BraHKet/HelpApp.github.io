@@ -830,47 +830,22 @@
         <h2 class="text-3xl font-bold text-center mb-6 text-gray-800">Diventa un esperto</h2>
         <p class="text-center text-gray-600 mb-8">Metti a disposizione le tue competenze e guadagna aiutando le persone che hanno bisogno della tua esperienza.</p>
         
-        <form id="expert-form" class="space-y-6">
-            <div>
-                <label for="expert-name" class="form-label">Nome completo</label>
-                <input type="text" id="expert-name" name="entry.889384443" class="form-input" required>
-            </div>
-            
-            <div>
-                <label for="expert-email" class="form-label">Email</label>
-                <input type="email" id="expert-email" name="entry.1344618123" class="form-input" required>
-            </div>
-            
-            <div>
-                <label for="expert-skills" class="form-label">Le tue competenze</label>
-                <select id="expert-skills" name="entry.1521319819" class="form-input" required>
-                    <option value="">Seleziona la tua area principale</option>
-                    <option value="tech">Supporto tecnico e informatico</option>
-                    <option value="study">Supporto allo studio</option>
-                    <option value="mobile">Assistenza dispositivi mobili</option>
-                    <option value="document">Assistenza documenti e burocrazia</option>
-                    <option value="other">Altro (specificare)</option>
-                </select>
-            </div>
-            
-            <div>
-                <label for="expert-description" class="form-label">Descrivi la tua esperienza</label>
-                <textarea id="expert-description" name="entry.2130995655" rows="3" class="form-input" style="color: #333333;" required></textarea>
-            </div>
-            
-            <div>
-                <label class="custom-checkbox">
-                    <input type="checkbox" id="expert-privacy-check" required>
-                    <span class="checkmark"></span>
-                    <span class="ml-2">Accetto la privacy policy e i termini di servizio</span>
-                </label>
-            </div>
-            
-            <button type="submit" id="expert-submit-btn" class="button w-full flex justify-center items-center">
-                <span>Invia candidatura</span>
-                <div class="loader" id="expert-loader"></div>
-            </button>
-        </form>
+        <!-- modify this form HTML and place wherever you want your form -->
+<form
+  action="https://formspree.io/f/xyzegzeg"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
         
         <div id="expert-confirmation" class="hidden mt-6 p-5 bg-green-100 text-green-700 rounded-lg text-center">
             <i class="fas fa-check-circle text-2xl mb-2"></i>
