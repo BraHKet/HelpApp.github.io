@@ -449,16 +449,23 @@
                     <i class="fas fa-hands-helping text-3xl mr-3 text-yellow-400"></i>
                     <h1 class="text-2xl font-bold text-white logo">Help</h1>
                 </div>
-                <nav class="hidden md:block">
+                <nav id="desktop-nav" class="hidden md:block">
                     <ul class="flex space-x-8">
                         <li><a href="#come-funziona" class="nav-link text-white">Come funziona</a></li>
                         <li><a href="#vantaggi" class="nav-link text-white">Vantaggi</a></li>
                         <li><a href="#iscrizione" class="nav-link text-white">Iscriviti</a></li>
                     </ul>
                 </nav>
-                <button class="md:hidden text-white text-xl">
+                <button id="mobile-menu-button" class="md:hidden text-white text-xl">
                     <i class="fas fa-bars"></i>
                 </button>
+            </div>
+            <div id="mobile-menu" class="md:hidden hidden mt-4 bg-gray-900 rounded-lg p-4">
+                <ul class="flex flex-col space-y-3">
+                    <li><a href="#come-funziona" class="nav-link text-white block py-2">Come funziona</a></li>
+                    <li><a href="#vantaggi" class="nav-link text-white block py-2">Vantaggi</a></li>
+                    <li><a href="#iscrizione" class="nav-link text-white block py-2">Iscriviti</a></li>
+                </ul>
             </div>
         </div>
     </header>
@@ -808,7 +815,7 @@
                             
                             <button type="submit" id="submit-btn" class="button w-full flex justify-center items-center">
                                 <span>Iscriviti ora</span>
-                                <div class="loader"></div>
+                                <div class="loader" style="display: none;"></div>
                             </button>
                         </form>
                         
@@ -870,7 +877,7 @@
                             
                             <button type="submit" id="expert-submit-btn" class="button w-full flex justify-center items-center">
                                 <span>Invia candidatura</span>
-                                <div class="expert-loader loader"></div>
+                                <div class="loader" style="display: none;"></div>
                             </button>
                         </form>
                         
@@ -956,71 +963,118 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM fully loaded');
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                console.log('Mobile menu elements found');
+                
+                mobileMenuButton.addEventListener('click', function() {
+                    console.log('Mobile menu button clicked');
+                    // Toggle mobile menu visibility
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+                
+                // Close mobile menu when clicking on a link
+                const mobileNavLinks = mobileMenu.querySelectorAll('a');
+                mobileNavLinks.forEach(link => {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            } else {
+                console.error('Mobile menu elements not found');
+            }
+            
             // Newsletter form handling
             const form = document.getElementById('newsletter-form');
             const confirmationMessage = document.getElementById('confirmation');
             const errorMessage = document.getElementById('error');
-            const submitButton = document.getElementById('submit-btn');
-            const submitText = submitButton.querySelector('span');
-            const loader = document.querySelector('.loader');
             
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
+            if (form) {
+                console.log('Form found');
                 
-                // Show loading state
-                submitText.textContent = 'Invio in corso...';
-                loader.style.display = 'block';
-                submitButton.disabled = true;
-                
-                // Get form data
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                
-                // Simulate email validation and API request
-                setTimeout(function() {
-                    // Email validation simulation
-                    if (validateEmail(email)) {
-                        // Successful submission
-                        form.reset();
-                        form.style.display = 'none';
-                        confirmationMessage.classList.remove('hidden');
-                        
-                        // Simulate sending verification email
-                        console.log('Email di verifica inviata a:', email);
-                        
-                        // In a real scenario, you would send this data to your server
-                        // which would handle the email verification process
-                    } else {
-                        // Error with the email format
-                        errorMessage.innerHTML = `
-                            <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
-                            <p class="font-medium">Formato email non valido!</p>
-                            <p>Inserisci un indirizzo email valido.</p>
-                        `;
-                        errorMessage.classList.remove('hidden');
-                        
-                        setTimeout(() => {
-                            errorMessage.classList.add('hidden');
-                        }, 5000);
-                    }
+                form.addEventListener('submit', function(e) {
+                    console.log('Form submitted');
+                    e.preventDefault();
                     
-                    // Reset button state
-                    submitText.textContent = 'Iscriviti ora';
-                    loader.style.display = 'none';
-                    submitButton.disabled = false;
-                }, 1500);
-            });
+                    const submitButton = document.getElementById('submit-btn');
+                    const submitText = submitButton.querySelector('span');
+                    const loader = submitButton.querySelector('.loader');
+                    
+                    // Show loading state
+                    submitText.textContent = 'Invio in corso...';
+                    if (loader) loader.style.display = 'block';
+                    submitButton.disabled = true;
+                    
+                    // Get form data
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    console.log('Form data:', { name, email });
+                    
+                    // Simulate email validation and API request
+                    setTimeout(function() {
+                        console.log('Processing form submission');
+                        // Email validation simulation
+                        if (validateEmail(email)) {
+                            console.log('Email is valid');
+                            // Successful submission
+                            form.reset();
+                            form.style.display = 'none';
+                            if (confirmationMessage) {
+                                confirmationMessage.classList.remove('hidden');
+                            }
+                            
+                            // Simulate sending verification email
+                            console.log('Email di verifica inviata a:', email);
+                        } else {
+                            console.log('Email is invalid');
+                            // Error with the email format
+                            if (errorMessage) {
+                                errorMessage.innerHTML = `
+                                    <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                                    <p class="font-medium">Formato email non valido!</p>
+                                    <p>Inserisci un indirizzo email valido.</p>
+                                `;
+                                errorMessage.classList.remove('hidden');
+                                
+                                setTimeout(() => {
+                                    errorMessage.classList.add('hidden');
+                                }, 5000);
+                            }
+                        }
+                        
+                        // Reset button state
+                        submitText.textContent = 'Iscriviti ora';
+                        if (loader) loader.style.display = 'none';
+                        submitButton.disabled = false;
+                    }, 1500);
+                });
+            } else {
+                console.error('Newsletter form not found');
+            }
             
             // Expert form handling
             const expertForm = document.getElementById('expert-form');
             const expertConfirmation = document.getElementById('expert-confirmation');
-            const expertSubmitButton = document.getElementById('expert-submit-btn');
-            const expertSubmitText = expertSubmitButton.querySelector('span');
-            const expertLoader = document.querySelector('.expert-loader');
             
             if (expertForm) {
+                console.log('Expert form found');
+                
                 expertForm.addEventListener('submit', function(e) {
+                    console.log('Expert form submitted');
                     e.preventDefault();
+                    
+                    const expertSubmitButton = document.getElementById('expert-submit-btn');
+                    const expertSubmitText = expertSubmitButton.querySelector('span');
+                    const expertLoader = expertSubmitButton.querySelector('.loader');
                     
                     // Show loading state
                     expertSubmitText.textContent = 'Invio in corso...';
@@ -1032,21 +1086,17 @@
                     const email = document.getElementById('expert-email').value;
                     const skills = document.getElementById('expert-skills').value;
                     const description = document.getElementById('expert-description').value;
+                    console.log('Expert form data:', { name, email, skills, description });
                     
                     // Simulate API request
                     setTimeout(function() {
+                        console.log('Processing expert form submission');
                         // Successful submission
                         expertForm.reset();
                         expertForm.style.display = 'none';
-                        expertConfirmation.classList.remove('hidden');
-                        
-                        // Log expert application data
-                        console.log('Candidatura esperto inviata:', {
-                            name,
-                            email,
-                            skills,
-                            description
-                        });
+                        if (expertConfirmation) {
+                            expertConfirmation.classList.remove('hidden');
+                        }
                         
                         // Reset button state
                         expertSubmitText.textContent = 'Invia candidatura';
@@ -1054,10 +1104,13 @@
                         expertSubmitButton.disabled = false;
                     }, 1500);
                 });
+            } else {
+                console.error('Expert form not found');
             }
             
             // Email validation function
             function validateEmail(email) {
+                console.log('Validating email:', email);
                 const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(String(email).toLowerCase());
             }
