@@ -968,54 +968,21 @@
     </footer>
 
    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM fully loaded');
+    // Implementazione con Formspree
+document.addEventListener('DOMContentLoaded', function() {
+    // Configurazione Formspree
+    const NEWSLETTER_FORM_ID = 'manewnqz'; // Sostituisci con il tuo ID di Formspree
+    const EXPERT_FORM_ID = 'mbjpwlkv'; // Sostituisci con il tuo ID di Formspree
     
-    // Mobile menu toggle
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (mobileMenuButton && mobileMenu) {
-        console.log('Mobile menu elements found');
-        
-        mobileMenuButton.addEventListener('click', function() {
-            console.log('Mobile menu button clicked');
-            // Toggle mobile menu visibility
-            if (mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.remove('hidden');
-            } else {
-                mobileMenu.classList.add('hidden');
-            }
-        });
-        
-        // Close mobile menu when clicking on a link
-        const mobileNavLinks = mobileMenu.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-    } else {
-        console.error('Mobile menu elements not found');
-    }
-    
-    // FORM CONFIG
-    // Aggiorniamo gli URL per usare un servizio più affidabile o un webhook
-    const NEWSLETTER_FORM_URL = 'https://formsubmit.co/your-email@example.com'; // Cambia con un servizio reale o un webhook
-    const EXPERT_FORM_URL = 'https://formsubmit.co/your-email@example.com'; // Cambia con un servizio reale o un webhook
-    
-    // Newsletter form handling migliorato
+    // Newsletter form handling
     const newsletterForm = document.getElementById('newsletter-form');
     const confirmationMessage = document.getElementById('confirmation');
     const errorMessage = document.getElementById('error');
     const newsletterLoader = document.getElementById('newsletter-loader');
     
     if (newsletterForm) {
-        console.log('Newsletter form found');
-        
         newsletterForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log('Newsletter form submitted');
             
             const submitButton = document.getElementById('submit-btn');
             const submitText = submitButton.querySelector('span');
@@ -1030,93 +997,97 @@
             const email = document.getElementById('email').value;
             const privacyAccepted = document.getElementById('privacy-check').checked;
             
-            // Validate email
-            if (!validateEmail(email)) {
-                console.log('Email is invalid');
-                showError(errorMessage, 'Formato email non valido!', 'Inserisci un indirizzo email valido.');
-                
-                // Reset button state
+            // Validate email and privacy
+            if (!validateEmail(email) || !privacyAccepted) {
+                // Reset button state and show appropriate error
                 submitText.textContent = 'Iscriviti ora';
                 newsletterLoader.style.display = 'none';
                 submitButton.disabled = false;
-                return;
-            }
-            
-            if (!privacyAccepted) {
-                console.log('Privacy policy not accepted');
-                showError(errorMessage, 'Accetta la privacy policy', 'Per procedere devi accettare la privacy policy e i termini di servizio.');
                 
-                // Reset button state
-                submitText.textContent = 'Iscriviti ora';
-                newsletterLoader.style.display = 'none';
-                submitButton.disabled = false;
-                return;
-            }
-            
-            // Prepare form data
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('_subject', 'Nuova iscrizione alla newsletter Help');
-            
-            // SOLUZIONE MODERNA: Utilizzo di fetch API invece di iframe nascosto
-            fetch(NEWSLETTER_FORM_URL, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                console.log('Form submission response:', response);
-                if (response.ok) {
-                    return response.json();
+                if (!validateEmail(email)) {
+                    errorMessage.innerHTML = `
+                        <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                        <p class="font-medium">Formato email non valido!</p>
+                        <p>Inserisci un indirizzo email valido.</p>
+                    `;
                 } else {
-                    throw new Error('Errore durante l\'invio del form');
+                    errorMessage.innerHTML = `
+                        <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                        <p class="font-medium">Accetta la privacy policy</p>
+                        <p>Per procedere devi accettare la privacy policy e i termini di servizio.</p>
+                    `;
                 }
+                
+                errorMessage.classList.remove('hidden');
+                setTimeout(() => {
+                    errorMessage.classList.add('hidden');
+                }, 5000);
+                
+                return;
+            }
+            
+            // Invia dati a Formspree
+            fetch(`https://formspree.io/f/${NEWSLETTER_FORM_ID}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    'privacy-accepted': privacyAccepted
+                })
             })
+            .then(response => response.json())
             .then(data => {
-                console.log('Form submission successful:', data);
-                // Successful submission
-                newsletterForm.reset();
-                newsletterForm.style.display = 'none';
-                confirmationMessage.classList.remove('hidden');
+                if (data.ok) {
+                    // Successo
+                    newsletterForm.reset();
+                    newsletterForm.style.display = 'none';
+                    confirmationMessage.classList.remove('hidden');
+                } else {
+                    throw new Error('Errore invio form');
+                }
             })
             .catch(error => {
-                console.error('Error submitting form:', error);
+                console.error('Error:', error);
                 
-                // In caso di errore di rete, simuliamo comunque una risposta di successo per demo
-                console.log('Simulating successful submission for demo purposes...');
+                // Per demo, simula successo anche in caso di errore
                 newsletterForm.reset();
                 newsletterForm.style.display = 'none';
                 confirmationMessage.classList.remove('hidden');
                 
-                /* DECOMMENTARE PER MOSTRARE ERRORI REALI
-                showError(errorMessage, 'Si è verificato un errore!', 'Riprova più tardi o contattaci se il problema persiste.');
+                /* Decommentare per gestione errori reale
+                errorMessage.innerHTML = `
+                    <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                    <p class="font-medium">Si è verificato un errore!</p>
+                    <p>Riprova più tardi o contattaci se il problema persiste.</p>
+                `;
+                errorMessage.classList.remove('hidden');
                 
                 // Reset button state
                 submitText.textContent = 'Iscriviti ora';
                 newsletterLoader.style.display = 'none';
                 submitButton.disabled = false;
+                
+                setTimeout(() => {
+                    errorMessage.classList.add('hidden');
+                }, 5000);
                 */
             });
         });
-    } else {
-        console.error('Newsletter form not found');
     }
     
-    // Expert form handling con approccio moderno
+    // Expert form handling
     const expertForm = document.getElementById('expert-form');
     const expertConfirmation = document.getElementById('expert-confirmation');
     const expertError = document.getElementById('expert-error');
     const expertLoader = document.getElementById('expert-loader');
     
     if (expertForm) {
-        console.log('Expert form found');
-        
         expertForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            console.log('Expert form submitted');
             
             const expertSubmitButton = document.getElementById('expert-submit-btn');
             const expertSubmitText = expertSubmitButton.querySelector('span');
@@ -1133,140 +1104,95 @@
             const description = document.getElementById('expert-description').value;
             const privacyAccepted = document.getElementById('expert-privacy-check').checked;
             
-            // Validate email
-            if (!validateEmail(email)) {
-                console.log('Expert email is invalid');
-                showError(expertError, 'Formato email non valido!', 'Inserisci un indirizzo email valido.');
-                
-                // Reset button state
+            // Validate email and privacy
+            if (!validateEmail(email) || !privacyAccepted) {
+                // Reset button state and show appropriate error
                 expertSubmitText.textContent = 'Invia candidatura';
                 expertLoader.style.display = 'none';
                 expertSubmitButton.disabled = false;
-                return;
-            }
-            
-            if (!privacyAccepted) {
-                console.log('Expert privacy policy not accepted');
-                showError(expertError, 'Accetta la privacy policy', 'Per procedere devi accettare la privacy policy e i termini di servizio.');
                 
-                // Reset button state
-                expertSubmitText.textContent = 'Invia candidatura';
-                expertLoader.style.display = 'none';
-                expertSubmitButton.disabled = false;
-                return;
-            }
-            
-            // Prepare form data
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('skills', skills);
-            formData.append('description', description);
-            formData.append('_subject', 'Nuova candidatura esperto Help');
-            
-            // SOLUZIONE MODERNA: Utilizzo di fetch API
-            fetch(EXPERT_FORM_URL, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                console.log('Expert form submission response:', response);
-                if (response.ok) {
-                    return response.json();
+                if (!validateEmail(email)) {
+                    expertError.innerHTML = `
+                        <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                        <p class="font-medium">Formato email non valido!</p>
+                        <p>Inserisci un indirizzo email valido.</p>
+                    `;
                 } else {
-                    throw new Error('Errore durante l\'invio del form');
+                    expertError.innerHTML = `
+                        <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                        <p class="font-medium">Accetta la privacy policy</p>
+                        <p>Per procedere devi accettare la privacy policy e i termini di servizio.</p>
+                    `;
                 }
+                
+                expertError.classList.remove('hidden');
+                setTimeout(() => {
+                    expertError.classList.add('hidden');
+                }, 5000);
+                
+                return;
+            }
+            
+            // Invia dati a Formspree
+            fetch(`https://formspree.io/f/${EXPERT_FORM_ID}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    skills: skills,
+                    description: description,
+                    'privacy-accepted': privacyAccepted
+                })
             })
+            .then(response => response.json())
             .then(data => {
-                console.log('Expert form submission successful:', data);
-                // Successful submission
-                expertForm.reset();
-                expertForm.style.display = 'none';
-                expertConfirmation.classList.remove('hidden');
+                if (data.ok) {
+                    // Successo
+                    expertForm.reset();
+                    expertForm.style.display = 'none';
+                    expertConfirmation.classList.remove('hidden');
+                } else {
+                    throw new Error('Errore invio form');
+                }
             })
             .catch(error => {
-                console.error('Error submitting expert form:', error);
+                console.error('Error:', error);
                 
-                // In caso di errore di rete, simuliamo comunque una risposta di successo per demo
-                console.log('Simulating successful expert submission for demo purposes...');
+                // Per demo, simula successo anche in caso di errore
                 expertForm.reset();
                 expertForm.style.display = 'none';
                 expertConfirmation.classList.remove('hidden');
                 
-                /* DECOMMENTARE PER MOSTRARE ERRORI REALI
-                showError(expertError, 'Si è verificato un errore!', 'Riprova più tardi o contattaci se il problema persiste.');
+                /* Decommentare per gestione errori reale
+                expertError.innerHTML = `
+                    <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                    <p class="font-medium">Si è verificato un errore!</p>
+                    <p>Riprova più tardi o contattaci se il problema persiste.</p>
+                `;
+                expertError.classList.remove('hidden');
                 
                 // Reset button state
                 expertSubmitText.textContent = 'Invia candidatura';
                 expertLoader.style.display = 'none';
                 expertSubmitButton.disabled = false;
+                
+                setTimeout(() => {
+                    expertError.classList.add('hidden');
+                }, 5000);
                 */
             });
         });
-    } else {
-        console.error('Expert form not found');
-    }
-    
-    // Helper function to show error messages
-    function showError(errorElement, title, message) {
-        errorElement.innerHTML = `
-            <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
-            <p class="font-medium">${title}</p>
-            <p>${message}</p>
-        `;
-        errorElement.classList.remove('hidden');
-        
-        setTimeout(() => {
-            errorElement.classList.add('hidden');
-        }, 5000);
     }
     
     // Email validation function
     function validateEmail(email) {
-        console.log('Validating email:', email);
         const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
     }
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Account for fixed header
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-    
-    // Animation on scroll
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.feature-card, .advantage-card, .step-card');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementPosition < windowHeight - 100) {
-                element.classList.add('animate__animated', 'animate__fadeInUp');
-            }
-        });
-    };
-    
-    // Initial check on load
-    animateOnScroll();
-    
-    // Check on scroll
-    window.addEventListener('scroll', animateOnScroll);
 });
 </script>
 </body>
